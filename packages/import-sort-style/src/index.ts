@@ -51,6 +51,7 @@ export interface IStyleAPI {
 
   isTypeImport: IMatcherFunction;
   moduleFileType(...exts: string[]): IMatcherFunction;
+  sortModuleFileExtension(comparator: IComparatorFunction): ISorterFunction;
 }
 
 export interface IMatcherFunction {

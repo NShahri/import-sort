@@ -228,6 +228,16 @@ function moduleFileType(...exts: string[]) {
   };
 }
 
+function sortModuleFileExtension(
+  comparator: IComparatorFunction,
+): ISorterFunction {
+  return (firstImport: IImport, secondImport: IImport): number => {
+    const first = firstImport.moduleName;
+    const second = secondImport.moduleName;
+    return comparator(extname(first), extname(second));
+  };
+}
+
 function naturally(first: string, second: string): number {
   return first.localeCompare(second, "en");
 }
@@ -308,6 +318,7 @@ const StyleAPI: IStyleAPI = {
 
   isTypeImport,
   moduleFileType,
+  sortModuleFileExtension,
 };
 
 export default StyleAPI;
