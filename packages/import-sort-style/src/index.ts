@@ -48,6 +48,9 @@ export interface IStyleAPI {
   naturally: IComparatorFunction;
   unicode: IComparatorFunction;
   dotSegmentCount: ISorterFunction;
+
+  isTypeImport: IMatcherFunction;
+  moduleFileType(...exts: string[]): IMatcherFunction;
 }
 
 export interface IMatcherFunction {

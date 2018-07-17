@@ -1,4 +1,4 @@
-import {dirname} from "path";
+import {dirname, extname} from "path";
 
 import {IImport} from "import-sort-parser";
 import {
@@ -218,6 +218,16 @@ function startsWith(...prefixes: string[]) {
   };
 }
 
+function isTypeImport(imported: IImport): boolean {
+  return imported.type === "import-type";
+}
+
+function moduleFileType(...exts: string[]) {
+  return imported => {
+    return exts.some(ext => extname(imported.moduleName) === ext);
+  };
+}
+
 function naturally(first: string, second: string): number {
   return first.localeCompare(second, "en");
 }
@@ -295,6 +305,9 @@ const StyleAPI: IStyleAPI = {
   naturally,
   unicode,
   dotSegmentCount,
+
+  isTypeImport,
+  moduleFileType,
 };
 
 export default StyleAPI;
